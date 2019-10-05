@@ -71,19 +71,19 @@ begin
 	op_dis <= '0';
 	wait until inicio = '1';
 
-		producir_datos (21, 12, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (42, 15, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (84, 48, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (58, 89, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (15, 10, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (1, 2, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (8, 1, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (5, 0, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (8, 0, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (6, 7, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (0, 7, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (3, 2, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
-		producir_datos (10, 5, 1, a, b, op_dis, reloj, lista_UF, ciclo);
+		producir_datos (14, 2, 1, a, b, op_dis, reloj, lista_UF, ciclo);
 
 		op_dis <= '0';
 
