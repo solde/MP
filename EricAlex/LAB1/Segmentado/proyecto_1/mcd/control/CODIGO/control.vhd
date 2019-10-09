@@ -40,8 +40,12 @@ end process;
 prx_esta: process(estado, op_dis, igualcero, consumo, menor, pcero)
 variable v_prxestado: tipoestado;
 begin
-
-
+	if estado = ESP and estan_operandos_disponibles(op_dis) then v_prxestado := CALC;
+	elsif estado = CALC and ha_finalizado_calculo(igualcero) then v_prxestado := HECHO;
+	elsif estado = HECHO and es_consumido_resultado(consumo) then v_prxestado := ESP;
+	else v_prxestado := estado;
+	end if;
+	
 
 	prxestado <= v_prxestado after retardo_logica_estado;
 end process;
@@ -52,6 +56,24 @@ variable v_ini, v_pe_a, v_pe_b: std_logic;
 variable v_finalizada, v_desocupada: std_logic;
 begin
 
+-- estado por defecto
+defecto(v_ini,v_pe_a,v_pe_b,v_finalizada,v_desocupada);
+
+if estado = ESP then
+	interfaces_ESP(v_finalizada, v_desocupada);
+	if	estan_operandos_disponibles(op_dis) then
+		camino_iniciar(v_ini,v_pe_a,v_pe_b);
+	end if;
+elsif estado = CALC then
+	interfaces_CALC(v_finalizada, v_desocupada);
+	if hay_intercambio(menor) then
+		camino_intercambio(v_pe_a,v_pe_b);
+	elsif not ha_finalizado_calculo(igualcero) then
+		camino_calcular(v_pe_a,v_pe_b);
+	end if;
+elsif estado = HECHO then
+	interfaces_HECHO(v_finalizada,v_desocupada);
+end if;		
 
 ini <= v_ini after retardo_logica_salida;
 pe_a <= v_pe_a after retardo_logica_salida;

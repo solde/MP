@@ -21,11 +21,11 @@ end camino_mcd;
 architecture estruc of camino_mcd is
 
 signal resu_resta, sal_reg_a, sal_reg_b, sal_mxa, sal_mx_ini_a, sal_mx_ini_b: st_dat;
-signal sal_menor: std_logic;
+signal sal_menor, neg_sal_menor: std_logic;
 begin
 
 -- mx_a
-mx_a: mux2 port map(d0 => sal_reg_b, d1 => resu_resta, sel => sal_menor, s => sal_mxa);
+mx_a: mux2 port map(d0 => sal_reg_b, d1 => resu_resta, sel => neg_sal_menor, s => sal_mxa);
 -- Mx_ini
 mx_ini_a: mux2 port map(d0 => sal_mxa, d1 =>a, sel => ini, s=>sal_mx_ini_a);
 mx_ini_b: mux2 port map(d0 => sal_reg_a, d1 =>b, sel => ini, s=>sal_mx_ini_b);
@@ -37,7 +37,7 @@ reg_b: RD_N_pe port map(reloj => reloj, pcero => pcero, pe=>pe_b, e => sal_mx_in
 
 -- Comparador a < b
 menor: menqu port map (L1 => sal_reg_a, L2 => sal_reg_b, meu =>sal_menor);
-
+neg_sal_menor<= not sal_menor;
 -- Restador
 resta: sumador port map (a => sal_reg_a, b => sal_reg_b, s => resu_resta);
 
