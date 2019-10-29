@@ -34,7 +34,7 @@ begin
 -- determinacion de los derechos de acceso al bloque
 derechos_acceso <= '1' when (s_estado.AF and s_estado.EST) = '1' else '0';
 
- prxestado := INI when s_estado.EST = DES0 and  pet.ini = '1'
+ prxestado <= INI when (s_estado.EST = DES0) and (pet.ini = '1')
 	else s_estado.EST;
 
 
