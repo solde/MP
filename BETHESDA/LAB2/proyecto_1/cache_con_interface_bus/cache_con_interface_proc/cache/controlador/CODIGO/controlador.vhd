@@ -17,10 +17,10 @@ entity controlador is
 port (reloj, pcero: in std_logic;
 		pet: in tp_contro_e;
 		s_estado: in tp_contro_cam_estado;
-		s_control: out tp_contro_cam_cntl;
-		resp: out tp_contro_s;
+		s_control: out tp_contro_cam_cntl;--
+		resp: out tp_contro_s;--
 		resp_m: in tp_cntl_memoria_e;
-		pet_m: out tp_cntl_memoria_s);
+		pet_m: out tp_cntl_memoria_s);--
 end;
   
 architecture compor of controlador is
@@ -34,6 +34,11 @@ begin
 -- determinacion de los derechos de acceso al bloque
 derechos_acceso <= '1' when (s_estado.AF and s_estado.EST) = '1' else '0';
 
+ prxestado := INI when s_estado.EST = DES0 and  pet.ini = '1'
+	else s_estado.EST;
 
-	
+
+
+s_control.EST_DE <= prxestado;
+ 
 end;

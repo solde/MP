@@ -91,53 +91,22 @@ begin
 	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
     escritura(M_e, reloj, dir, valor);
 
+        -- escrituras en memoria
+	v_dir:= "010";
+	v_valor:= "01111111";
+	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
+	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
+    escritura(M_e, reloj, dir, valor);
+    
     -- lecturas en memoria
 	v_dir:= "100";
 	v_valor:= "01111111";
 	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
 	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
     lectura_comprobacion(M_e, DL, reloj, dir, valor);
+    
 
-   -- escrituras en memoria
-	v_dir:= "100";
-	v_valor:= "10000001";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    escritura(M_e, reloj, dir, valor);
-
-	v_dir:= "010";
-	v_valor:= "10111111";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    escritura(M_e, reloj, dir, valor);
-
-	v_dir:= "001";
-	v_valor:= "11011111";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    escritura(M_e, reloj, dir, valor);
-
-   -- lecturas en memoria
-	v_dir:= "010";
-	v_valor:= "10111111";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    lectura_comprobacion(M_e, DL, reloj, dir, valor);
-
-   -- escrituras en memoria
-	v_dir:= "010";
-	v_valor:= "00111000";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    escritura(M_e, reloj, dir, valor);
-
-	v_dir:= "001";
-	v_valor:= "11011111";
-	dir:= std_logic_vector(resize(unsigned(v_dir), st_dir_conjunto'length));
-	valor:= std_logic_vector(resize(unsigned(v_valor), st_elem_dat'length));
-    lectura_comprobacion(M_e, DL, reloj, dir, valor);
-
-
+   
     
     assert false report "Comprobacion finalizada." severity note;
 	 final := true;
