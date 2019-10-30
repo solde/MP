@@ -39,7 +39,7 @@ reg_estado: process (reloj, pcero)
 variable v_estado: tipoestado;
 begin
 	if pcero = puesta_cero then
-		v_estado := ESP;
+		v_estado := DES0;
 	elsif rising_edge(reloj) then
 		v_estado := prxestado;										
 	end if;
@@ -49,7 +49,7 @@ end process;
 
 
 -- logica de proximo estado
-prx_esta: process(estado, op_dis, igualcero, consumo, pcero)
+prx_esta: process(estado, pcero)
 variable v_prxestado: tipoestado;
 begin
 	v_prxestado := estado; 
@@ -57,7 +57,7 @@ begin
 		case estado is
 			when DES0 =>
 				if hay_peticion_ini_procesador(pet) then v_prxestado := INI;
-				else if hay_peticion_procesador(pet) then v_prxestado := CMPETIQ;
+				elsif hay_peticion_procesador(pet) then v_prxestado := CMPETIQ;
 				end if;
 			when DES =>
 				if(hay_peticion_procesador(pet)) then  v_prxestado := CMPETIQ;
@@ -81,33 +81,36 @@ begin
 	else
        v_prxestado := DES0;
 	end if; 
-	prxestado <= v_prxestado after retardo_logica_estado;
+	prxestado <= v_prxestado after retardo_logica_prx_estado;
 end process;
 --
 
 
 -- logica de control y salida
-logi_sal: process(estado, op_dis, igualcero, consumo, pcero)
-variable v_mxa, v_pe: std_logic;
-variable v_finalizada, v_desocupada: std_logic;
+logi_sal: process(estado,resp_m, pcero)
+variable v_s_control: tp_contro_cam_cntl;
+variable v_pet_m: tp_cntl_memoria_s;
+variable v_resp: tp_contro_s;
 begin
-	defecto(v_mxa, v_pe, v_finalizada, v_desocupada);
+	por_defecto (v_s_control,v_pet_m, v_resp);
 	if (pcero = not puesta_cero) then
 		case estado is
 			when CMPETIQ => 
 				lectura_etiq_estado(v_s_control);
 			when ESCINI =>
 				actualizar_etiqueta ( v_s_control);
-				actualizar_estado ( v_s_control, estado_conte);
+				actualizar_estado ( v_s_control, contenedor_valido);
 				actualizar_dato ( v_s_control);
+			when LEC =>
+				lectura_datos (v_s_control);
+			when others =>--demoment
+				por_defecto (v_s_control,v_pet_m, v_resp);
 				
 		end case;
 	end if; 
-
-mxa <= v_mxa after retardo_logica_salida;
-pe <= v_pe after retardo_logica_salida;
-finalizada <= v_finalizada after retardo_logica_salida;
-desocupada <= v_desocupada after retardo_logica_salida;
+pet_m <= v_pet_m after retardo_logica_salida;
+s_control <= v_s_control after retardo_logica_salida;
+resp <= v_resp after retardo_logica_salida;
 
 end process;
  
