@@ -114,7 +114,7 @@ begin
 				interfaces_HECHOE( v_resp );
 			when HECHOL =>
 				interfaces_HECHOL( v_resp );
-			when DES =>
+			when DES | DES0 =>
 				lectura_etiq_estado(v_s_control);
 			when CMPETIQ => 
 				interfaces_en_CURSO(v_resp);

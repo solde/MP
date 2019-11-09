@@ -124,7 +124,7 @@ begin
 	v_DIR2 := 1;
 	
 	inicio (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);
-	--inicio (reloj, peticion, pet_listo, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
+	inicio (reloj, peticion, pet_listo, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
 
 	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);
 	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO, ciclo, fichero_pro_cons);

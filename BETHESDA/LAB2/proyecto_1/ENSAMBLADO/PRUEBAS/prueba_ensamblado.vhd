@@ -99,7 +99,7 @@ ensa_ca_mem: ensamblado port map (reloj => reloj, pcero => pcero, pet_proc => pe
 
 
 productor: process 
-variable v_DIR: natural range 0 to tam_ELogico;
+variable v_DIR, v_DIR2: natural range 0 to tam_ELogico;
 variable v_DATO: natural range 0 to tam_palabra ;
 begin
 -- fichero resumen
@@ -120,9 +120,14 @@ begin
 -- inicio de peticiones
 	v_DIR := 0; 
 	v_DATO := 1;
+	
+	v_DIR2 := 1;
+	
 	inicio (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);
-
-	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);
+	--inicio (reloj, peticion, pet_listo, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
+--	Pescritura(reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);
+	Pescritura (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);
+	--Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
 
 
 	no_hay_peticion (reloj, peticion, pet_listo, ciclo, fichero_pro_cons);
