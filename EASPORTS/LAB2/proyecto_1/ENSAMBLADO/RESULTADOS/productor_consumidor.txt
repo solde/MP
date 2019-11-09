@@ -1,12 +1,51 @@
-        prod. store xxxx yy: productor emite store; direccion: xxxx; valor: yy
-        prod. load xxxx: productor emite load; direccion: xxxx
-        store cache xxxx yy: cache inicia procesado de store; direccion: xxxx; valor: yy
-        load cache xxxx: cache inicia procesado de load; direccion: xxxx
-        consumo. valor    yy  load    xxxx: consumidor captura el valor; direccion: xxxx; valor: yy
+        prod. store xxxx yy: productor emite store; direccion: xxxx; valor: yy
+        prod. load xxxx: productor emite load; direccion: xxxx
+        store cache xxxx yy: cache inicia procesado de store; direccion: xxxx; valor: yy
+        load cache xxxx: cache inicia procesado de load; direccion: xxxx
+        consumo. valor    yy  load    xxxx: consumidor captura el valor; direccion: xxxx; valor: yy
 
 ciclo      accion
     0     no hay peticion
     4    final de puesta a cero
     4  peticion de inicio  0000    01
-    5  peticion de inicio  0001    01
-    9          prod. load  0000
+    5          prod. load  0000
+    8          load cache  0000
+    9         prod. store  0001    05
+   11             consumo. valor    01  load    0000
+   12         store cache  0001    05
+   13          prod. load  0001
+   21          load cache  0001
+   22          prod. load  0001
+   31             consumo. valor    05  load    0001
+   32          load cache  0001
+   33          prod. load  0000
+   35             consumo. valor    05  load    0001
+   36          load cache  0000
+   37         prod. store  0000    2A
+   39             consumo. valor    01  load    0000
+   40         store cache  0000    2A
+   41     no hay peticion
+   51     no hay peticion
+
+ Contenido de la cache. Informacion en hexadecimal o binario
+
+Numero
+Contenedor      Estado
+       Etiqueta      Datos
+
+        0   0000   1    2A
+        1   0000   1    05
+        2   XXXX   U    XX
+        3   XXXX   U    XX
+        4   XXXX   U    XX
+        5   XXXX   U    XX
+        6   XXXX   U    XX
+        7   XXXX   U    XX
+
+ Contenido de la memoria. Informacion en hexadecimal
+
+direccion   dato
+
+    0000    2A
+    0001    05
+    0002    XX
