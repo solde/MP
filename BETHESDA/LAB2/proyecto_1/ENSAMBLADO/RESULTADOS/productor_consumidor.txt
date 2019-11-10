@@ -7,7 +7,6 @@
 ciclo      accion
     0     no hay peticion
     4    final de puesta a cero
-    4  peticion de inicio  0000    01
-    5         prod. store  0000    01
-    8         store cache  0000    01
-    9     no hay peticion
+    4         prod. store  0000    01
+    4         store cache  0000    01
+    5          prod. load  0000
