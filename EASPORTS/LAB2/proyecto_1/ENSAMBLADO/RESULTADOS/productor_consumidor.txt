@@ -7,25 +7,18 @@
 ciclo      accion
     0     no hay peticion
     4    final de puesta a cero
-    4  peticion de inicio  0000    01
+    4         prod. store  0000    01
+    4         store cache  0000    01
     5          prod. load  0000
-    8          load cache  0000
-    9         prod. store  0001    05
-   11             consumo. valor    01  load    0000
-   12         store cache  0001    05
-   13          prod. load  0001
-   21          load cache  0001
-   22          prod. load  0001
-   31             consumo. valor    05  load    0001
-   32          load cache  0001
-   33          prod. load  0000
-   35             consumo. valor    05  load    0001
-   36          load cache  0000
-   37         prod. store  0000    2A
-   39             consumo. valor    01  load    0000
-   40         store cache  0000    2A
-   41     no hay peticion
-   51     no hay peticion
+   13          load cache  0000
+   14          prod. load  0000
+   23             consumo. valor    01  load    0000
+   24          load cache  0000
+   25         prod. store  0000    2A
+   27             consumo. valor    01  load    0000
+   28         store cache  0000    2A
+   29     no hay peticion
+   39     no hay peticion
 
  Contenido de la cache. Informacion en hexadecimal o binario
 
@@ -34,7 +27,7 @@ Contenedor      Estado
        Etiqueta      Datos
 
         0   0000   1    2A
-        1   0000   1    05
+        1   XXXX   U    XX
         2   XXXX   U    XX
         3   XXXX   U    XX
         4   XXXX   U    XX
@@ -47,5 +40,4 @@ Contenedor      Estado
 direccion   dato
 
     0000    2A
-    0001    05
-    0002    XX
+    0001    XX

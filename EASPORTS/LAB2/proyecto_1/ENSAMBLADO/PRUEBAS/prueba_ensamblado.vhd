@@ -124,17 +124,23 @@ begin
 	v_DATO3 := 42;
 	
 	v_DIR2 := 1;
-	inicio (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);     -- Init fila 0 (1)
+	--inicio (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);     -- Init fila 0 (1)
 	--inicio (reloj, peticion, pet_listo, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
 
-	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);   -- load 0  HIT
+	--Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);   -- load 0  HIT
 
-	Pescritura(reloj, peticion, pet_listo, v_DIR2, v_DATO2, ciclo, fichero_pro_cons);                       -- write(5)->1 MISS
-	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO2, ciclo, fichero_pro_cons); -- load 1 MISS (5)
-	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO2, ciclo, fichero_pro_cons); -- load 1 HIT (5)
-	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);   -- load 0 HIT (1)
+	--Pescritura(reloj, peticion, pet_listo, v_DIR2, v_DATO2, ciclo, fichero_pro_cons);                       -- write(5)->1 MISS
+	--Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO2, ciclo, fichero_pro_cons); -- load 1 MISS (5)
+	--Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO2, ciclo, fichero_pro_cons); -- load 1 HIT (5)
+	--Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);   -- load 0 HIT (1)
 	
-	Pescritura(reloj, peticion, pet_listo, v_DIR, v_DATO3, ciclo, fichero_pro_cons); -- write(42)->0 HIT
+	--Pescritura(reloj, peticion, pet_listo, v_DIR, v_DATO3, ciclo, fichero_pro_cons); -- write(42)->0 HIT
+	
+	-- Test Incremental:
+	Pescritura(reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons); -- Store 1 Mem (MISS)
+	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons); -- Load MEM (MISS)
+	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons); -- Load MEM (HIT)
+	Pescritura(reloj, peticion, pet_listo, v_DIR, v_DATO3, ciclo, fichero_pro_cons); -- Store 1 Mem (HIT)
 
 	no_hay_peticion (reloj, peticion, pet_listo, ciclo, fichero_pro_cons);
 	no_hay_peticion (reloj, peticion, pet_listo, ciclo, fichero_pro_cons);

@@ -116,7 +116,7 @@ variable v_s_control: tp_contro_cam_cntl;
 variable v_pet_m: tp_cntl_memoria_s;
 variable v_resp: tp_contro_s;
 begin
-   -- Ponmos lod valores por defecto
+   -- Ponemos los valores por defecto
 	por_defecto(v_s_control, v_pet_m,v_resp);
 	if(pcero = not puesta_cero) then
 		case estado is
@@ -158,8 +158,6 @@ begin
 				interfaces_en_CURSO(v_resp);
 			when ESCP => -- Escritura HIT a cache
 				interfaces_en_CURSO(v_resp);
-				actualizar_estado(v_s_control,contenedor_valido);
-				actualizar_etiqueta(v_s_control);
 				actualizar_dato(v_s_control);
 			when others =>
 			 -- No fem res
