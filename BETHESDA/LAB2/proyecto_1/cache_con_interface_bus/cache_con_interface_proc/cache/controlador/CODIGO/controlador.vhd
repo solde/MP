@@ -78,7 +78,7 @@ begin
 				v_prxestado := ESPL;
 			when ESPL =>
 				if hay_respuesta_memoria(resp_m) then v_prxestado := ESB;
-				else v_prxestado := estado;
+				--else v_prxestado := estado;
 				end if;
 			when ESB =>
 				v_prxestado := LEC;
@@ -88,14 +88,14 @@ begin
 				v_prxestado := ESPEA;
 			when ESPEA =>
 				if hay_respuesta_memoria(resp_m) then v_prxestado := ESCP;
-				else v_prxestado := estado; end if;
+				--else v_prxestado := estado; end if;
 			when ESCP =>
 				v_prxestado := HECHOE;
 			when PMEF =>
 				v_prxestado := ESPEF;
 			when ESPEF =>
 				if hay_respuesta_memoria(resp_m) then v_prxestado := HECHOE;
-				else v_prxestado := estado; end if;
+				--else v_prxestado := estado; end if;
 			when HECHOE | HECHOL =>
 				v_prxestado := DES;
 			when others =>
