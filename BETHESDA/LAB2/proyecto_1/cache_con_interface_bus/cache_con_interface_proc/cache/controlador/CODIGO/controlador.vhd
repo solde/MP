@@ -49,7 +49,7 @@ end process;
 
 
 -- logica de proximo estado
-prx_esta: process(estado, pcero)
+prx_esta: process(estado, pcero, pet, derechos_acceso)
 variable v_prxestado: tipoestado;
 begin
 	v_prxestado := estado; 
@@ -58,6 +58,7 @@ begin
 			when DES0 =>
 				if hay_peticion_ini_procesador(pet) then v_prxestado := INI;
 				elsif hay_peticion_procesador(pet) then v_prxestado := CMPETIQ;
+				else v_prxestado := DES0;
 				end if;
 			when DES =>
 				if(hay_peticion_procesador(pet)) then  v_prxestado := CMPETIQ;
@@ -68,8 +69,19 @@ begin
 			when ESCINI => 
 				v_prxestado := HECHOE;
 			when CMPETIQ =>
-				if es_acierto_lectura (pet, derechos_acceso) then v_prxestado := LEC;
+				if es_fallo_lectura (pet, derechos_acceso) then v_prxestado := PML;
+				elsif es_acierto_lectura (pet, derechos_acceso) then v_prxestado := LEC;
+				elsif es_acierto_escritura (pet, derechos_acceso) then v_prxestado := PMEA;
+				elsif es_fallo_escritura (pet, derechos_acceso) then v_prxestado := PMEF;
 				end if;
+			when PML =>
+				v_prxestado := ESPL;
+			when ESPL =>
+				if hay_respuesta_memoria (resp_m) then v_prxestado := ESB;
+				else v_prxestado := estado;
+				end if;
+			when ESB =>
+				v_prxestado := LEC;
 			when LEC =>
 				v_prxestado := HECHOL;
 			when HECHOE | HECHOL =>
@@ -92,17 +104,31 @@ variable v_s_control: tp_contro_cam_cntl;
 variable v_pet_m: tp_cntl_memoria_s;
 variable v_resp: tp_contro_s;
 begin
+
 	por_defecto (v_s_control,v_pet_m, v_resp);
 	if (pcero = not puesta_cero) then
 		case estado is
-			when CMPETIQ => 
+			when INI | ESPL =>
+				interfaces_en_CURSO(v_resp);
+			when HECHOE =>
+				interfaces_HECHOE( v_resp );
+			when HECHOL =>
+				interfaces_HECHOL( v_resp );
+			when DES =>
 				lectura_etiq_estado(v_s_control);
-			when ESCINI =>
+			when CMPETIQ => 
+				interfaces_en_CURSO(v_resp);
+			when ESCINI | ESB =>
 				actualizar_etiqueta ( v_s_control);
 				actualizar_estado ( v_s_control, contenedor_valido);
 				actualizar_dato ( v_s_control);
+				interfaces_en_CURSO(v_resp);
+			when PML =>
+				peticion_memoria_lectura(v_pet_m);
+				interfaces_en_CURSO(v_resp);	
 			when LEC =>
 				lectura_datos (v_s_control);
+				interfaces_en_CURSO(v_resp);
 			when others =>--demoment
 				por_defecto (v_s_control,v_pet_m, v_resp);
 				

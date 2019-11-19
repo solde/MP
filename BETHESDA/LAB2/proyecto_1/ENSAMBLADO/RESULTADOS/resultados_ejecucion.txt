@@ -1,0 +1,30 @@
+ salida de comprobacion de la propagacion de un acceso a memoria
+
+ciclo acceso pend.    acceso cache
+      tipo   direc.  tipo   direc.     segmentacion del acceso                        act. campos  estado CC    cache contenido  memoria
+                                 A/F                                                    ET ES DA                CT ET    ES DA   contenido
+  
+    4 inic    0000   inic    0000      D0                                                N  N  N        DES0    0  XXXX  U  XX    XX
+    5 load    0000                         IN                                            N  N  N         INI    0  XXXX  U  XX    XX
+    6 load    0000                             ES                                        N  N  N      ESCINI    0  XXXX  U  XX    XX
+    7 load    0000                                 HE                                    S  S  S      HECHOE    0  0000  1  01    XX
+    8 load    0000   load    0000      DS                                                N  N  N         DES    0  0000  1  01    XX
+    9 load    0001                A        CM                                            N  N  N     CMPETIQ    0  0000  1  01    XX
+   10 load    0001                             LE                                        N  N  N         LEC    0  0000  1  01    XX
+   11 load    0001                                 HL                                    N  N  N      HECHOL    0  0000  1  01    XX
+   12 load    0001   load    0001      DS                                                N  N  N         DES    1  XXXX  U  XX    XX
+   13 no hay                      F        CM                                            N  N  N     CMPETIQ    1  XXXX  U  XX    XX
+   14 no hay                                   FL                                        N  N  N         PML    1  XXXX  U  XX    XX
+   15 no hay                                       ML                                    N  N  N        ESPL    1  XXXX  U  XX    XX
+   16 no hay                                           ML                                N  N  N        ESPL    1  XXXX  U  XX    XX
+   17 no hay                                               ML                            N  N  N        ESPL    1  XXXX  U  XX    XX
+   18 no hay                                                   ML                        N  N  N        ESPL    1  XXXX  U  XX    XX
+   19 no hay                                                       ML                    N  N  N        ESPL    1  XXXX  U  XX    XX
+   20 no hay                                                           ML                N  N  N        ESPL    1  XXXX  U  XX    XX
+   21 no hay                                                               ML            N  N  N        ESPL    1  XXXX  U  XX    XX
+   22 no hay                                                                   ML        N  N  N        ESPL    1  XXXX  U  XX    XX
+   23 no hay                                                                       ML     N  N  N        ESPL    1  XXXX  U  XX    XX
+   24 no hay                                                                           ML     N  N  N        ESPL    1  XXXX  U  XX    XX
+   25 no hay                                                                               ML     N  N  N        ESPL    1  XXXX  U  XX    XX
+   26 no hay                                                                                   ML     N  N  N        ESPL    1  XXXX  U  XX    XX
+   27 no hay                                                                                       ML     N  N  N        ESPL    1  XXXX  U  XX    XX
