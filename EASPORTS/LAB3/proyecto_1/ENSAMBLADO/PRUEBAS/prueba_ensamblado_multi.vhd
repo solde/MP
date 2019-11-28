@@ -113,7 +113,7 @@ ensa_ca_mem: ensamblado_multi port map (reloj => reloj, pcero => pcero, arb_cont
 	s_control_obs <= << signal .prueba_ensamblado_multi.ensa_ca_mem.cache.cach.cache_sin.contro.contro_obser.s_control: tp_contro_cam_cntl >>;
 
 productor: process 
-variable v_DIR: natural range 0 to tam_ELogico;
+variable v_DIR, v_DIR2: natural range 0 to tam_ELogico;
 variable v_DATO: natural range 0 to tam_palabra ;
 begin
 
@@ -136,11 +136,14 @@ begin
 	arb_control <= '1';
 
 -- peticiones
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 	v_DIR := 0; 
+	v_DIR2 := 1; 
 	v_DATO := 1;
 	inicio (reloj, peticion, pet_listo, v_DIR, v_DATO, ciclo, fichero_pro_cons);
 	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR, v_DATO, ciclo, fichero_pro_cons);
---
+	Plectura (reloj, peticion, pet_listo, respuesta, s_esperado, v_DIR2, v_DATO, ciclo, fichero_pro_cons);
 
 
 	no_hay_peticion (reloj, peticion, pet_listo, ciclo, fichero_pro_cons);
@@ -152,7 +155,8 @@ begin
 	parar <= '1';
 	wait;       
 
-        
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 end process;
 
 
