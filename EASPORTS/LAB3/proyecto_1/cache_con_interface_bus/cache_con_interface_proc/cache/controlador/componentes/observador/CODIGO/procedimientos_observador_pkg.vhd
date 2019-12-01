@@ -18,6 +18,8 @@ function hay_peticion_escritura_bus (signal pet: tp_contro_Obs_e) return boolean
 
 function es_acierto (signal derechos_acceso: std_logic) return boolean;   
 
+function hay_trans_bus (signal trans_bus: std_logic) return boolean;   
+
 -- realizacion de acciones
 procedure interfaces_DES(variable v_resp: out tp_contro_Obs_s);
 procedure interfaces_en_CURSO(variable v_resp: out tp_contro_Obs_s);
@@ -50,6 +52,13 @@ begin
 	es_acierto := (derechos_acceso = derechos_acceso_si);
 return (es_acierto);
 end es_acierto;   
+
+function hay_trans_bus (signal trans_bus: std_logic) return boolean is
+variable hay_trans_bus: boolean:= FALSE;
+begin
+	hay_trans_bus := (trans_bus = '1');
+return (hay_trans_bus);
+end hay_trans_bus;  
 
 -- realizacion de acciones
 procedure interfaces_DES(variable v_resp: out tp_contro_Obs_s) is
