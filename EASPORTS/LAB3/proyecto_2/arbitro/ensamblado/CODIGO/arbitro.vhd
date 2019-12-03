@@ -32,7 +32,7 @@ begin
 reg_mval: RD_1_arbi port map (reloj => reloj, pcero => pcero, e => fin_trans, s => reg_fin_trans);
 
 -- arbitraje
-arbi: arbitraje port map (arb => arb_control, peticiones => arb_peticiones, concesiones => t_arb_concesiones);
+arbi: arbitraje port map (reloj => reloj, pcero => pcero, arb => arb_control, peticiones => arb_peticiones, concesiones => t_arb_concesiones);
 
 --hay concesion
 or_concesiones(0) <= t_arb_concesiones(0);

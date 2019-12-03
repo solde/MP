@@ -68,15 +68,8 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME prueba_ensamblado_multi -
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT ../PRUEBAS_cruce/formato_ventanas.do -section_id eda_simulation
 
 
-set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/tipos_pruebas_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
 
-set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_3/subproyecto_2/UTILIDADES_pkg/imprimir_traza_pkg/impri_traza_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
 
-set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_2/UTILIDADES_pkg/impri_CACHE_memoria_pkg/impri_cache_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
-set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_2/UTILIDADES_pkg/impri_CACHE_memoria_pkg/impri_memoria_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
-set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/procedimientos_prueba_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
-set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/procedimientos_peticiones_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
-set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/prueba_ensamblado_multi.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
 
 
 
@@ -181,4 +174,12 @@ set_global_assignment -name SEARCH_PATH ../../../../LAB3/proyecto_3/subproyecto_
 
 
 
+set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/tipos_pruebas_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_3/subproyecto_2/UTILIDADES_pkg/imprimir_traza_pkg/impri_traza_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_2/UTILIDADES_pkg/impri_CACHE_memoria_pkg/impri_cache_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB3/proyecto_2/UTILIDADES_pkg/impri_CACHE_memoria_pkg/impri_memoria_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/procedimientos_prueba_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/procedimientos_peticiones_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../PRUEBAS_cruce/prueba_ensamblado_multi.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../../../LAB2/proyecto_1/tipos_constantes_pkg/acciones_pkg.vhd -section_id prueba_ensamblado_multi -hdl_version VHDL_2008
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
